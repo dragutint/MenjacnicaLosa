@@ -53,10 +53,8 @@ public class Menjacnica implements MenjacnicaInterface {
 
 		for (int i = 0; i < valute.size(); i++) {
 			if (valute.get(i).equals(valuta)) {
-				for (int i1 = 0; i1 < valute.size(); i1++) {
-					valute.get(i1).getKursevi().addLast(kurs);
-					break;
-				}
+				valute.get(i).getKursevi().addLast(kurs);
+				break;
 			}
 		}
 	}
