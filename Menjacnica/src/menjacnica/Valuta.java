@@ -11,24 +11,36 @@ public class Valuta {
 		return naziv;
 	}
 
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
+	public void setNaziv(String naziv) throws Exception {
+		if(naziv.isEmpty() || naziv == null) {
+			throw new Exception("Greska pri unosu naziva valute");
+		} else {
+			this.naziv = naziv;
+		}
 	}
 
 	public String getSkracenica() {
 		return skracenica;
 	}
 
-	public void setSkracenica(String skracenica) {
-		this.skracenica = skracenica;
+	public void setSkracenica(String skracenica) throws Exception {
+		if(skracenica.isEmpty() || skracenica == null || skracenica.length() > 3) {
+			throw new Exception("Skracenica valute je lose uneta");
+		} else {
+			this.skracenica = skracenica;
+		}
 	}
 
 	public LinkedList<Kurs> getKursevi() {
 		return kursevi;
 	}
 
-	public void setKursevi(LinkedList<Kurs> kursevi) {
-		this.kursevi = kursevi;
+	public void setKursevi(LinkedList<Kurs> kursevi) throws Exception {
+		if(kursevi == null) {
+			throw new Exception("Kursevi lose uneti");
+		} else {
+			this.kursevi = kursevi;
+		}
 	}
 
 	@Override
