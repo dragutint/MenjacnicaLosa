@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 import menjacnica.interfejs.MenjacnicaInterface;
 
-public class Menjacnica implements MenjacnicaInterface{
+public class Menjacnica implements MenjacnicaInterface {
 	private String naziv;
 	private LinkedList<Valuta> valute;
 
@@ -46,20 +46,59 @@ public class Menjacnica implements MenjacnicaInterface{
 	}
 
 	@Override
-	public void dodajKursValute(Valuta valuta, GregorianCalendar datum, Kurs kurs) {
-		// TODO Auto-generated method stub
-		
+	public void dodajKursValute(Valuta valuta, Kurs kurs) {
+		if (!valute.contains(valuta)) {
+			return;
+		}
+
+		for (int i = 0; i < valute.size(); i++) {
+			if (valute.get(i).equals(valuta)) {
+				valute.get(i).getKursevi().addFirst(kurs);
+			}
+		}
 	}
 
 	@Override
 	public void obrisiKursValute(Valuta valuta, GregorianCalendar datum) {
-		// TODO Auto-generated method stub
+		if (!valute.contains(valuta)) {
+			return;
+		}
 		
+		Valuta v = new Valuta();
+		for (int i = 0; i < valute.size(); i++) {
+			if (valute.get(i).equals(valuta)) {
+				v = valute.get(i);
+				break;
+			}
+		}
+		
+		for (int i = 0; i < v.getKursevi().size(); i++) {
+			if(v.getKursevi().get(i).getDatum().equals(datum)) {
+				v.getKursevi().remove(i);
+			}
+		}
 	}
 
 	@Override
 	public Kurs vratiKursNaDan(Valuta valuta, GregorianCalendar datum) {
-		// TODO Auto-generated method stub
+		if (!valute.contains(valuta)) {
+			return null;
+		}
+
+		Valuta v = new Valuta();
+		for (int i = 0; i < valute.size(); i++) {
+			if (valute.get(i).equals(valuta)) {
+				v = valute.get(i);
+				break;
+			}
+		}
+		
+		for (int i = 0; i < v.getKursevi().size(); i++) {
+			if(v.getKursevi().get(i).getDatum().equals(datum)) {
+				return v.getKursevi().get(i);
+			}
+		}
+
 		return null;
 	}
 

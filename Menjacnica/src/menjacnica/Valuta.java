@@ -67,22 +67,10 @@ public class Valuta {
 		if (getClass() != obj.getClass())
 			return false;
 		Valuta other = (Valuta) obj;
-		if (kursevi == null) {
-			if (other.kursevi != null)
-				return false;
-		} else if (!kursevi.equals(other.kursevi))
-			return false;
-		if (naziv == null) {
-			if (other.naziv != null)
-				return false;
-		} else if (!naziv.equals(other.naziv))
-			return false;
-		if (skracenica == null) {
-			if (other.skracenica != null)
-				return false;
-		} else if (!skracenica.equals(other.skracenica))
-			return false;
-		return true;
+		if(other.getNaziv().equals(this.getNaziv())) {
+			return true;
+		}
+		return false;
 	}
 
 }
