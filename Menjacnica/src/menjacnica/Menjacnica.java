@@ -53,7 +53,10 @@ public class Menjacnica implements MenjacnicaInterface {
 
 		for (int i = 0; i < valute.size(); i++) {
 			if (valute.get(i).equals(valuta)) {
-				valute.get(i).getKursevi().addFirst(kurs);
+				for (int i1 = 0; i1 < valute.size(); i1++) {
+					valute.get(i1).getKursevi().addLast(kurs);
+					break;
+				}
 			}
 		}
 	}
@@ -75,6 +78,7 @@ public class Menjacnica implements MenjacnicaInterface {
 		for (int i = 0; i < v.getKursevi().size(); i++) {
 			if(v.getKursevi().get(i).getDatum().equals(datum)) {
 				v.getKursevi().remove(i);
+				break;
 			}
 		}
 	}
@@ -98,7 +102,7 @@ public class Menjacnica implements MenjacnicaInterface {
 				return v.getKursevi().get(i);
 			}
 		}
-
+		
 		return null;
 	}
 
