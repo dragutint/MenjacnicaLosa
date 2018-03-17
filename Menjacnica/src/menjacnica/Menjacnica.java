@@ -46,20 +46,40 @@ public class Menjacnica implements MenjacnicaInterface{
 	}
 
 	@Override
-	public void dodajKursValute(Valuta valuta, GregorianCalendar datum, Kurs kurs) {
-		// TODO Auto-generated method stub
-		
+	public void dodajKursValute(Valuta valuta, Kurs kurs) {
+		for (int i = 0; i < valute.size(); i++) {
+			if(valute.get(i).equals(valuta)) {
+				valute.get(i).getKursevi().addLast(kurs);
+				break;
+			}
+		}
 	}
 
 	@Override
 	public void obrisiKursValute(Valuta valuta, GregorianCalendar datum) {
-		// TODO Auto-generated method stub
-		
+		for (int i = 0; i < valute.size(); i++) {
+			if( valute.get(i).equals(valuta)) {
+				for (int j = 0; j < valute.get(i).getKursevi().size(); j++) {
+					if( valute.get(i).getKursevi().get(j).getDatum().equals(datum)) {
+						valute.get(i).getKursevi().remove(j);
+						return;
+					}
+				}
+			}
+		}
 	}
 
 	@Override
 	public Kurs vratiKursNaDan(Valuta valuta, GregorianCalendar datum) {
-		// TODO Auto-generated method stub
+		for (int i = 0; i < valute.size(); i++) {
+			if(valute.get(i).equals(valuta)) {
+				for (int j = 0; j < valute.get(i).getKursevi().size(); j++) {
+					if(valute.get(i).getKursevi().get(j).getDatum().equals(datum)) {
+						return valute.get(i).getKursevi().get(j);
+					}
+				}
+			}
+		}
 		return null;
 	}
 
